@@ -215,6 +215,8 @@ def is_xpu_available(check_device=False):
         return False
 
     import intel_extension_for_pytorch  # noqa: F401
+    if os.environ.get("ACCELERATE_XPU_MOCK_TEST", "false") == "true":
+        return True
 
     if check_device:
         try:
